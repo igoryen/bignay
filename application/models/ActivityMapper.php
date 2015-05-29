@@ -64,7 +64,11 @@ class Application_Model_ActivityMapper {
     $retvalar = []; // retvalar = ret(urn) var(iables') ar(ray)
     $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
     
-    $resultSet = $this->getDbTable()->fetchAll();
+    // SELECT * FROM <table> ORDER BY date DESC
+    $select = $this->getDbTable()->select();
+    $select->order('date DESC');
+    $resultSet = $this->getDbTable()->fetchAll($select);
+    
     $records   = array();
     foreach ($resultSet as $row) {
       $ar = new Application_Model_Activity(); // $ar = activity record
