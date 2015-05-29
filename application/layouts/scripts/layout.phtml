@@ -8,17 +8,21 @@
   <body>
     <div id="header" style="background-color: #EEEEEE; height: 30px;">
       <div id="header-logo" style="float: left">
-        <b>Bignay</b>
+        <b>Bignay!</b>
       </div>
-      <div id="header-navigation" style="float: right">
-        <a href="<?php
-        echo $this->url(
-          array('controller' => 'activity'), 'default', true)
-        ?>">Our activity</a>
+      <br/>
+      <div id="header-navigation" style="float: left">
+        <a href="<?php echo $this->url(array('controller' => 'activity'), 'default', true); ?>">Our activity</a>
       </div>
     </div>
 
-    <?php echo $this->layout()->content ?>
+    <?php 
+    echo '<br>'. __LINE__;
+    //echo '<pre>'; var_dump($this->layout()); echo '</pre>'; 
+    var_dump($this->layout()->content );
+      echo __LINE__;
+      ?>
+    
 
   </body>
 </html>

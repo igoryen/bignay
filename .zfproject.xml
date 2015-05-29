@@ -10,6 +10,9 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
         </controllerFile>
+         <controllerFile controllerName="Activity">
+          <actionMethod actionName="index"/>
+        </controllerFile>
         <controllerFile controllerName="Error"/>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
