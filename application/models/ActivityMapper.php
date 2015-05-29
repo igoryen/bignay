@@ -60,12 +60,15 @@ class Application_Model_ActivityMapper {
    * records[] (values of records) and 
    * columns[] (names of columns)
    */
-  public function fetchAll() {
+  public function fetchAll($date = null) {
     $retvalar = []; // retvalar = ret(urn) var(iables') ar(ray)
     $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
     
     // SELECT * FROM <table> ORDER BY date DESC
     $select = $this->getDbTable()->select();
+    if($date != null){
+      $select->where('date = ? ', $date);
+    }
     $select->order('date DESC');
     $resultSet = $this->getDbTable()->fetchAll($select);
     
@@ -84,5 +87,5 @@ class Application_Model_ActivityMapper {
     $retvalar['columns'] = $columns;
     return $retvalar;
   }
-
+  
 }
