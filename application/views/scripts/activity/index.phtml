@@ -26,9 +26,9 @@ $records = $this->retvalar['records'];
     <tr>
       <td><?php echo $this->escape($record->date) ?></td>
       <td><?php echo $this->escape($record->description) ?></td>
-      <td><?php echo $this->escape($record->deposit) ?></td>
-      <td><?php echo $this->escape($record->withdrawal) ?></td>
-      <td><?php echo $this->escape($record->balance) ?></td>
+      <td style="text-align:right"><?php echo $this->escape($record->deposit) ?></td>
+      <td style="text-align:right"><?php echo $this->escape($record->withdrawal) ?></td>
+      <td style="text-align:right"><?php echo $this->escape($record->balance) ?></td>
     </tr>
   <?php endforeach ?>
 </table>
