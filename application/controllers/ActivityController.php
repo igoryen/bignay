@@ -7,7 +7,8 @@ class ActivityController extends Zend_Controller_Action {
   }
 
   public function indexAction() {
-    // action body
+    $activity           = new Application_Model_ActivityMapper();
+    $this->view->entries = $activity->fetchAll();
   }
 
 }
