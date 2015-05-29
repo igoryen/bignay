@@ -43,8 +43,29 @@ class Application_Model_Activity {
     return $this;
   }
 
-  public function setBalance($blc) {
-    $this->_balance = $blc;
+  /**
+   * Prepare the number for display: add format to it, or assign "" if there is no number.
+   * @param float $number coming from the database
+   * @return string to send to the view for display
+   * 
+   * @version 1
+   * @date 2015-05-29
+   * @author igoryen <igor.yentaltsev@gmail.com>
+   */
+  private function fixNumber($number){
+    $locale = new Zend_Locale('de_AT');
+    if($number != null){
+      $formatted_number = Zend_Locale_Format::toNumber($number, array('number_format' => '#,##0.00'));
+    }
+    else{
+      $formatted_number = '';
+    }
+    
+    return $formatted_number;
+  }
+  
+  public function setBalance($blc) {    
+    $this->_balance = $this->fixNumber($blc);
     return $this;
   }
 
@@ -62,7 +83,7 @@ class Application_Model_Activity {
   }
 
   public function setDeposit($dps){
-    $this->_deposit = $dps;
+    $this->_deposit = $this->fixNumber($dps);
     return $this;
   }
 
@@ -89,7 +110,7 @@ class Application_Model_Activity {
   }
 
   public function setWithdrawal($wtd){
-    $this->_withdrawal = $wtd;
+    $this->_withdrawal = $this->fixNumber($wtd);
     return $this;
   }
 
