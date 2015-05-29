@@ -23,6 +23,7 @@
           <dbTableFile dbTableName="Activity"/>
         </dbTableDirectory>
         <modelFile modelName="ActivityMapper"/>
+        <modelFile modelName="Activity"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
