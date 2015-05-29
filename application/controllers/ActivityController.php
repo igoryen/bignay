@@ -7,14 +7,14 @@ class ActivityController extends Zend_Controller_Action {
   }
 
   public function indexAction() {
-    $am = new Application_Model_ActivityMapper();
-    $date = $this->_getParam('date');
-    if($date != null){
-      $this->view->retvalar = $am->fetchAll($date);
-    }
-    else{
-      $this->view->retvalar = $am->fetchAll();
-    }
+    $am                   = new Application_Model_ActivityMapper();
+    $this->view->retvalar = $am->fetchAll();
   }
-  
+
+  public function dateAction() {
+    $date = $this->_getParam('dt');
+    $am                   = new Application_Model_ActivityMapper();
+    $this->view->retvalar = $am->getByDate($date);
+  }
+
 }

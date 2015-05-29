@@ -60,18 +60,37 @@ class Application_Model_ActivityMapper {
    * records[] (values of records) and 
    * columns[] (names of columns)
    */
-  public function fetchAll($date = null) {
-    $retvalar = []; // retvalar = ret(urn) var(iables') ar(ray)
-    $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
+  public function fetchAll() {
+    // SELECT * FROM <table> ORDER BY date DESC
+    $select = $this->getDbTable()->select();
+    $select->order('date DESC');
+    $resultSet = $this->getDbTable()->fetchAll($select);
     
+    return $this->retvalar($resultSet);
+  }
+  
+  /**
+   * Display records by date
+   * @param type $date
+   * @return type
+   */
+  public function getByDate($date) {
     // SELECT * FROM <table> ORDER BY date DESC
     $select = $this->getDbTable()->select();
     if($date != null){
-      $select->where('date = ? ', $date);
+      $select->where('YEAR(date) = ?', substr($date, 0,4));
     }
     $select->order('date DESC');
     $resultSet = $this->getDbTable()->fetchAll($select);
     
+    return $this->retvalar($resultSet);
+    
+  }
+  
+  // retvalar = ret(urn) var(iables') ar(ray)
+  public function retvalar($resultSet){
+    $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
+    $retvalar = []; 
     $records   = array();
     foreach ($resultSet as $row) {
       $ar = new Application_Model_Activity(); // $ar = activity record
