@@ -5,7 +5,6 @@ class Application_Model_ActivityMapper {
   protected $_dbTable;
 
   public function setDbTable($dbTable) {
-    echo __METHOD__;
     if (is_string($dbTable)) {
       $dbTable = new $dbTable();
     }
@@ -17,7 +16,6 @@ class Application_Model_ActivityMapper {
   }
 
   public function getDbTable() {
-    echo __METHOD__;
     if (null === $this->_dbTable) {
       $this->setDbTable('Application_Model_DbTable_Activity');
     }
@@ -56,10 +54,7 @@ class Application_Model_ActivityMapper {
   }
 
   public function fetchAll() {
-    echo __METHOD__;
-//    echo 'tralala!' . __METHOD__;
     $resultSet = $this->getDbTable()->fetchAll();
-    //echo '****' .var_dump($resultSet);
     $records   = array();
     foreach ($resultSet as $row) {
       $ar = new Application_Model_Activity(); // $ar = activity record
@@ -70,9 +65,7 @@ class Application_Model_ActivityMapper {
         ->setWithdrawal($row->withdrawal)
         ->setBalance($row->balance);
       $records[] = $ar;
-      //echo '****' . print_r($records);
     }
-    //var_dump($records);
     return $records;
   }
 

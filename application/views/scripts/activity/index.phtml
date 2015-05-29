@@ -7,14 +7,13 @@
 
 
 Our Activity Records: <br />
-<?php var_dump($this->records);?>
 <ul>
   <?php foreach ($this->records as $record): ?>
   <li>
     <?php echo $this->escape($record->date) ?>
     <?php echo $this->escape($record->description) ?>
     <?php echo $this->escape($record->deposit) ?>
-    <?php echo $this->escape($record->withrawal) ?>
+    <?php echo $this->escape($record->withdrawal) ?>
     <?php echo $this->escape($record->balance) ?>
 </li>
   <?php endforeach ?>

@@ -15,14 +15,6 @@
         <a href="<?php echo $this->url(array('controller' => 'activity'), 'default', true); ?>">Our activity</a>
       </div>
     </div>
-
-    <?php 
-    echo '<br>'. __LINE__;
-    //echo '<pre>'; var_dump($this->layout()); echo '</pre>'; 
-    var_dump($this->layout()->content );
-      echo __LINE__;
-      ?>
-    
-
+    <?php echo $this->layout()->content ?>
   </body>
 </html>
