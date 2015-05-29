@@ -8,6 +8,6 @@ and open the template in the editor.
     Author     : igor.e
 */
 
-table, td {
+table, th, td {
   border: solid 1px gray;
 }

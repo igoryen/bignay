@@ -53,7 +53,7 @@ class Application_Model_Activity {
    * @author igoryen <igor.yentaltsev@gmail.com>
    */
   private function fixNumber($number){
-    $locale = new Zend_Locale('de_AT');
+    //$locale = new Zend_Locale('de_AT');
     if($number != null){
       $formatted_number = Zend_Locale_Format::toNumber($number, array('number_format' => '#,##0.00'));
     }

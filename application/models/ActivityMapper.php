@@ -53,7 +53,17 @@ class Application_Model_ActivityMapper {
       ->setBalance($row->balance);
   }
 
+  /**
+   * Fetch (1) all values from the database (SELECT * FROM...) and (2)
+   * the names of the table columns
+   * @return array $retvalar holds two arrays: 
+   * records[] (values of records) and 
+   * columns[] (names of columns)
+   */
   public function fetchAll() {
+    $retvalar = []; // retvalar = ret(urn) var(iables') ar(ray)
+    $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
+    
     $resultSet = $this->getDbTable()->fetchAll();
     $records   = array();
     foreach ($resultSet as $row) {
@@ -66,7 +76,9 @@ class Application_Model_ActivityMapper {
         ->setBalance($row->balance);
       $records[] = $ar;
     }
-    return $records;
+    $retvalar['records'] = $records;
+    $retvalar['columns'] = $columns;
+    return $retvalar;
   }
 
 }

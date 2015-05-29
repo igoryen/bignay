@@ -8,7 +8,7 @@ class ActivityController extends Zend_Controller_Action {
 
   public function indexAction() {
     $am = new Application_Model_ActivityMapper();
-    $this->view->records = $am->fetchAll();
+    $this->view->retvalar = $am->fetchAll();
   }
 
 }
