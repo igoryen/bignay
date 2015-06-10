@@ -20,4 +20,13 @@ class ActivityController extends Zend_Controller_Action {
     $this->view->retvalar = $am->getByDate($date);
   }
 
+  /**
+   * bignay.com/activity/description?d=bought
+   */
+  public function descriptionAction() {
+    $description = $this->_getParam('d');
+    $am = new Application_Model_ActivityMapper();
+    $this->view->inbox = $am->getByDescription($description);
+  }
+
 }
