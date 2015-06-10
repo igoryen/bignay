@@ -87,10 +87,24 @@ class Application_Model_ActivityMapper {
     
   }
   
+  
+  public function getByDescription($string) {
+    // SELECT * FROM <table> {...} ORDER BY date DESC
+    $select = $this->getDbTable()->select();
+    if($string != null){
+      $select->where('LOWER(description) LIKE ?', '%'.$string .'%');
+    }
+    $select->order('date DESC');
+    $resultSet = $this->getDbTable()->fetchAll($select);
+    
+    return $this->retvalar($resultSet);
+    
+  }
+  
   // retvalar = ret(urn) var(iables') ar(ray)
   public function retvalar($resultSet){
     $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
-    $retvalar = []; 
+    $outbox = []; 
     $records   = array();
     foreach ($resultSet as $row) {
       $ar = new Application_Model_Activity(); // $ar = activity record
@@ -102,9 +116,9 @@ class Application_Model_ActivityMapper {
         ->setBalance($row->balance);
       $records[] = $ar;
     }
-    $retvalar['records'] = $records;
-    $retvalar['columns'] = $columns;
-    return $retvalar;
+    $outbox['records'] = $records;
+    $outbox['columns'] = $columns;
+    return $outbox;
   }
   
 }
