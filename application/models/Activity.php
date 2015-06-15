@@ -52,7 +52,7 @@ class Application_Model_Activity {
    * @date 2015-05-29
    * @author igoryen <igor.yentaltsev@gmail.com>
    */
-  private function fixNumber($number){
+  public function fixNumber($number){
     //$locale = new Zend_Locale('de_AT');
     if($number != null){
       $formatted_number = Zend_Locale_Format::toNumber($number, array('number_format' => '#,##0.00'));

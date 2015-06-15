@@ -1,5 +1,5 @@
 <?php
-
+// for table Activity
 class Application_Model_ActivityMapper {
 
   protected $_dbTable;
@@ -89,18 +89,64 @@ class Application_Model_ActivityMapper {
   
   
   public function getByDescription($string) {
-    // SELECT * FROM <table> {...} ORDER BY date DESC
-    $select = $this->getDbTable()->select();
+
+    $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
+    
+    # QUERY 1
+    # SELECT * FROM <table> {...} ORDER BY date DESC
+    $select1 = $this->getDbTable()->select();
     if($string != null){
-      $select->where('LOWER(description) LIKE ?', '%'.$string .'%');
+      $select1->where('LOWER(description) LIKE ?', '%'.$string .'%');
+    }    
+    $select1->order('date DESC');
+    $resultSet1 = $this->getDbTable()->fetchAll($select1);
+    #TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+//    $file = $_SERVER['DOCUMENT_ROOT'] . '/igoryen.txt';
+//    $sql = $select1->__toString();
+//    $data = $sql . PHP_EOL;
+//    file_put_contents($file, $data, FILE_APPEND);
+    #LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL    
+    
+    foreach ($resultSet1 as $row) {
+      $ar = new Application_Model_Activity(); // $ar = activity record
+      $ar->setId($row->id)
+        ->setDate($row->date)
+        ->setDescription($row->description)
+        ->setDeposit($row->deposit)
+        ->setWithdrawal($row->withdrawal)
+        ->setBalance($row->balance);
+      $records[] = $ar;
     }
-    $select->order('date DESC');
-    $resultSet = $this->getDbTable()->fetchAll($select);
+    $outbox['records'] = $records;
+    $outbox['columns'] = $columns;
     
-    return $this->retvalar($resultSet);
+    # QUERY 2
+    # SELECT sum() where ...
+    $select2 = $this->getDbTable()->select();
+    $select2->from(array('a'=>'activity'), 
+                  array('SUM(`a`.`withdrawal`) AS sum'));
+    if($string != null){
+      $select2->where('LOWER(description) LIKE ?', '%'.$string .'%');
+    }    
+    $resultSet2 = $this->getDbTable()->fetchAll($select2);
+    #TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+//    $file = $_SERVER['DOCUMENT_ROOT'] . '/igoryen.txt';
+//    $sql = $select2->__toString();
+//    $data = $sql . PHP_EOL;
+//    file_put_contents($file, $data, FILE_APPEND);
+    #LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+    foreach ($resultSet2 as $row) {
+      $sum = $row->sum;
+    }
     
+    $outbox['sum'] = Application_Model_Activity::fixNumber($sum);
+    
+    return $outbox;
   }
   
+
+
+
   // retvalar = ret(urn) var(iables') ar(ray)
   public function retvalar($resultSet){
     $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
