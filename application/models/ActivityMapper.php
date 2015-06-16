@@ -88,15 +88,15 @@ class Application_Model_ActivityMapper {
   }
   
   
-  public function getByDescription($string) {
+  public function getByDescription($description, $column) {
 
     $columns = $this->getDbTable()->info(Zend_Db_Table_Abstract::COLS);
     
     # QUERY 1
     # SELECT * FROM <table> {...} ORDER BY date DESC
     $select1 = $this->getDbTable()->select();
-    if($string != null){
-      $select1->where('LOWER(description) LIKE ?', '%'.$string .'%');
+    if($description != null){
+      $select1->where('LOWER(description) LIKE ?', '%'.$description .'%');
     }    
     $select1->order('date DESC');
     $resultSet1 = $this->getDbTable()->fetchAll($select1);
@@ -124,9 +124,9 @@ class Application_Model_ActivityMapper {
     # SELECT sum() where ...
     $select2 = $this->getDbTable()->select();
     $select2->from(array('a'=>'activity'), 
-                  array('SUM(`a`.`withdrawal`) AS sum'));
-    if($string != null){
-      $select2->where('LOWER(description) LIKE ?', '%'.$string .'%');
+                  array('SUM(`a`.`'.$column.'`) AS sum'));
+    if($description != null){
+      $select2->where('LOWER(description) LIKE ?', '%'.$description .'%');
     }    
     $resultSet2 = $this->getDbTable()->fetchAll($select2);
     #TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
