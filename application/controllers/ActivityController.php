@@ -25,8 +25,9 @@ class ActivityController extends Zend_Controller_Action {
    */
   public function descriptionAction() {
     $description = $this->_getParam('d');
+    $column = $this->_getParam('c');
     $am = new Application_Model_ActivityMapper();
-    $this->view->inbox = $am->getByDescription($description);
+    $this->view->inbox = $am->getByDescription($description, $column);
   }
 
 }
