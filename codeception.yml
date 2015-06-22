@@ -11,7 +11,7 @@ settings:
 modules:
     config:
         Db:
-            dsn: ''
-            user: ''
-            password: ''
-            dump: tests/_data/dump.sql
+            dsn: mysql:dbname=igoryen1;host=10.201.2.118
+            user: 'offers'
+            password: 'offers'
+            dump: ../DB_Dumps/bignay/dump20150617.sql

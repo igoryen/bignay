@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/ig/bignay/application/models/ActivityMapper.php</file>
-            <file>file:/C:/ig/bignay/application/controllers/ActivityController.php</file>
-            <file>file:/C:/ig/bignay/application/models/Activity.php</file>
-            <file>file:/C:/ig/bignay/application/layouts/scripts/layout.phtml</file>
+            <file>file:/C:/ig/bignay/tests/unit/DataBaseTest.php</file>
+            <file>file:/C:/ig/bignay/codeception.yml</file>
+            <file>file:/C:/ig/bignay/tests/unit/_bootstrap.php</file>
+            <file>file:/C:/ig/bignay/application/Bootstrap.php</file>
         </group>
     </open-files>
 </project-private>
