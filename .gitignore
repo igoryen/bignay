@@ -21,3 +21,5 @@ extras/documentation
 application/configs/*
 
 tests/_output/*
+
+codeception.yml
