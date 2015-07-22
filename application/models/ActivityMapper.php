@@ -6,7 +6,29 @@ class Application_Model_ActivityMapper {
 
   public function setDbTable($dbTable) {
     if (is_string($dbTable)) {
+      #TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+      $file = $_SERVER['DOCUMENT_ROOT'] . '/igoryen.txt';
+      $date = date("d/m : H:i :");
+      $data = PHP_EOL;
+      $data .= $date . " - ";
+      $data .= __FILE__ . '/' . __LINE__ . '/' . __METHOD__;
+      $data .= ' ';
+      $data .= 'DbTable name is: ' . $dbTable;
+      //$dbTable = new $dbTable();
+      //$data .= 'class is: ' . get_class($dbTable);
+      file_put_contents($file, $data, FILE_APPEND);
+      #LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
       $dbTable = new $dbTable();
+      #TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+      $file = $_SERVER['DOCUMENT_ROOT'] . '/igoryen.txt';
+      $date = date("d/m : H:i :");
+      $data = PHP_EOL;
+      $data .= $date . " - ";
+      $data .= __FILE__ . '/' . __LINE__ . '/' . __METHOD__;
+      //$data .= 'aaaa ';
+      $data .= 'DbTable is: ' . get_class($dbTable);
+      file_put_contents($file, $data, FILE_APPEND);
+      #LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
     }
     if (!$dbTable instanceof Zend_Db_Table_Abstract) {
       throw new Exception('Invalid table data gateway provided');

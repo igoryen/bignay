@@ -10,7 +10,7 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
         </controllerFile>
-         <controllerFile controllerName="Activity">
+        <controllerFile controllerName="Activity">
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>

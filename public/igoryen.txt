@@ -1,0 +1,5 @@
+
+25/06 : 22:32 : - C:\ig\bignay\application\models\ActivityMapper.php/14/Application_Model_ActivityMapper::setDbTable DbTable name is: Application_Model_DbTable_Activity
+25/06 : 22:32 : - C:\ig\bignay\application\models\ActivityMapper.php/27/Application_Model_ActivityMapper::setDbTableDbTable is: Application_Model_DbTable_Activity
+07/07 : 21:00 : - C:\ig\bignay\application\models\ActivityMapper.php/14/Application_Model_ActivityMapper::setDbTable DbTable name is: Application_Model_DbTable_Activity
+07/07 : 21:00 : - C:\ig\bignay\application\models\ActivityMapper.php/27/Application_Model_ActivityMapper::setDbTableDbTable is: Application_Model_DbTable_Activity
